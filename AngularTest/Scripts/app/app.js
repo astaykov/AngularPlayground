@@ -1,6 +1,6 @@
 ﻿var activityData = [
                 {
-                    title: "Test",
+                    title: "Editable Text",
                     data:
                         {
                             type: 'text',
@@ -9,7 +9,7 @@
                         }
                 },
                 {
-                    title: "Big Text",
+                    title: "Big read only text",
                     data:
                         {
                             type: 'bigtext',
@@ -18,7 +18,7 @@
                         }
                 },
                 {
-                    title: "Test 12",
+                    title: "Read only grid",
                     data:
                         {
                             type: 'grid',
@@ -27,11 +27,11 @@
                                 [
                                     {
                                         title: 'One',
-                                        name: 'Workbook name'
+                                        name: 'new workbook'
                                     },
                                     {
-                                        title: 'One',
-                                        name: 'Workbook name 2'
+                                        title: 'two',
+                                        name: 'Some other workbook'
                                     },
                                 ]
                         }
