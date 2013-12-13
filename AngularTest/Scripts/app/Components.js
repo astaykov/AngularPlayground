@@ -4,12 +4,12 @@
     return {
         restrict: 'E',
         transclude: true,
-        controller: function ($scope, $element) {
+        controller: ['$scope', '$element', function ($scope, $element) {
             var steps = $scope.steps = activityData;
             this.addStep = function (step) {
                 steps.push(step);
             }
-        },
+        }],
         template:
             '<div class="step" ng-repeat="step in steps">'+
             '       <step step="step"></step>' +
@@ -18,7 +18,7 @@
     };
 })
 
-.directive('step', function ($compile) {
+.directive('step', ['$compile', function ($compile) {
     var mainTemplate = 
         '<div class="panel panel-primary">' +
         '    <div class="panel-heading">{{step.title}}</div>' +
@@ -62,13 +62,13 @@
         link: linker,
         scope: { step: '=' },
         replace: true,
-        controller: function($scope, $element)
+        controller: ['$scope', '$element', function ($scope, $element)
         {
             console.log('entering Step Controller: ' + $scope.step.data.type);
-        }
+        }]
     };
     return result;
-})
+}])
 
 .directive('bbText', function () {
     return {
@@ -77,10 +77,10 @@
         transclude: true,
         replace: true,
         scope: { data: '=' },
-        controller: function($scope, $element)
+        controller: ['$scope', '$element', function($scope, $element)
         {
             console.log('entering Block Controller: ' + $scope.data.type);
-        },
+        }],
         template: '<input type="text" class="form-control" png-readonly="data.readonly" ng-model="data.source" />'
     };
 })
@@ -92,10 +92,10 @@
         transclude: true,
         replace: true,
         scope: { data: '=' },
-        controller: function($scope, $element)
+        controller: ['$scope', '$element', function($scope, $element)
         {
             console.log('entering Block Controller: ' + $scope.data.type);
-        },
+        }],
         template: '<textarea class="form-control" rows="5" ng-readonly="data.readonly" ng-model="data.source"></textarea>'
     };
 })
@@ -107,9 +107,9 @@
         transclude: true,
         replace: true,
         scope: { data: '=' },
-        controller: function ($scope, $element) {
+        controller: ['$scope', '$element', function ($scope, $element) {
             console.log('entering Grid Controller: ' + $scope.data.type);
-        },
+        }],
         template:
                 '<table class="table-hover table-bordered"><tbody>' +
                     '<tr ng-repeat="row in data.source">' +
