@@ -29,6 +29,7 @@
     var textTemplate = '<bb-text data="step.data"></bb-text>';
     var gridTemplate = '<bb-grid data="step.data">This is Grid Data</bb-grid>';
     var bigTextTemplate = '<bb-text-area data="step.data"></bb-text-area>';
+    var radioTemplate = '<bb-radio data="step.data"></bb-radio>';
 
     var getTemplate = function (contentType) {
         var template = '';
@@ -42,6 +43,9 @@
                 break;
             case 'grid':
                 template = mainTemplate.replace("&content&", gridTemplate);
+                break;
+            case 'radio':
+                template = mainTemplate.replace("&content&", radioTemplate);
                 break;
         }
         return template;
@@ -117,5 +121,19 @@
                             '{{col}}' +
                         '</td>' +
                 '</tbody></table>' 
+    };
+})
+
+.directive('bbRadio', function () {
+    return {
+        require: '^step',
+        restrict: 'E',
+        transclude: true,
+        replace: true,
+        scope: { data: '=' },
+        controller: ['$scope', '$element', function ($scope, $element) {
+            console.log('entering Radio Block Controller: ' + $scope.data.source[2].options);
+        }],
+        templateUrl: "bbRadio.html"
     };
 })

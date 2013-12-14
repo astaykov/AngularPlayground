@@ -87,6 +87,17 @@
     <div class="col-md-8">
         <screen></screen>
     </div>
+
+
+    <script type="text/ng-template" id="bbRadio.html">
+        <div class="radio" ng-repeat="option in data.source">
+            <label>
+                <input type="radio" name="{{data.prefix}}Radios" ng-model="data.value" ng-value="option.value" ng-readonly="data.readonly">
+                {{option.text}}
+            </label>
+        </div>
+    </script>
+
 </div>
 
 @section scripts

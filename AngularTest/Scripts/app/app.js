@@ -8,6 +8,36 @@
                             source: 'I come from JSON'
                         }
                 },
+                 {
+                     title: "Radio Group One",
+                     data:
+                         {
+                             type: 'radio',
+                             readonly: false,
+                             prefix: 'rgo',
+                             value: 'no',
+                             source: [
+                                      { value: 'yes', text: 'Yes' },
+                                      { value: 'no', text: 'No' },
+                                      { value: 'na', text: 'Not Selected' }
+                             ]
+                         }
+                 },
+                  {
+                      title: "Radio Group Two",
+                      data:
+                          {
+                              type: 'radio',
+                              readonly: false,
+                              prefix: 'rgt',
+                              value: 'на',
+                              source: [
+                                        { value: 'да', text: 'Да' },
+                                        { value: 'не', text: 'Не' },
+                                        { value: 'на', text: 'Не е избран' }
+                              ]
+                          }
+                  },
                 {
                     title: "Big read only text",
                     data:
