@@ -5,7 +5,7 @@
         restrict: 'E',
         transclude: true,
         controller: ['$scope', '$element', function ($scope, $element) {
-            var steps = $scope.steps = activityData;
+            var steps = $scope.steps = nData = activityData;
             this.addStep = function (step) {
                 steps.push(step);
             }
@@ -55,7 +55,7 @@
         console.log('entering Linker: ' + scope.step.data.type);
         element.html(getTemplate(scope.step.data.type));
         console.log('Linker :: compiling...');
-        $compile(element.contents())(scope);
+        $compile(element.contents(), attrs)(scope);
         console.log('Linker :: done...');
     }
 
@@ -95,7 +95,7 @@
         {
             console.log('entering Block Controller: ' + $scope.data.type);
         }],
-        template: '<input type="text" class="form-control" png-readonly="data.readonly" ng-model="data.source" />'
+        templateUrl: 'bbText.html'
     };
 })
 
@@ -110,29 +110,29 @@
         {
             console.log('entering Block Controller: ' + $scope.data.type);
         }],
-        template: '<textarea class="form-control" rows="5" ng-readonly="data.readonly" ng-model="data.source"></textarea>'
+        templateUrl: 'bbTextArea.html'
     };
 })
 
-.directive('bbGrid', function () {
+.directive('bbGrid', ['$compile', function ($compile) {
     return {
         require: '^step',
         restrict: 'E',
-        transclude: true,
+        transclude: false,
         replace: true,
         scope: { data: '=' },
-        controller: ['$scope', '$element', function ($scope, $element) {
+        controller: ['$scope', '$element', '$attrs', function ($scope, $element, $attrs) {
             console.log('entering Grid Controller: ' + $scope.data.type);
+            $scope.gridData = $scope.data.source;
+            $scope.gridOptions = {
+                data: 'gridData',
+                columnDefs: [{ field: 'title', displayName: 'Title' }, { field: 'name', displayName: 'Name' }]
+            };
         }],
-        template:
-                '<table class="table-hover table-bordered"><tbody>' +
-                    '<tr ng-repeat="row in data.source">' +
-                        '<td ng-repeat="col in row">' +
-                            '{{col}}' +
-                        '</td>' +
-                '</tbody></table>' 
+        //template: '<div><div ng-grid="gridOptions"></div></div>',
+        templateUrl: 'bbGrid.html'
     };
-})
+}])
 
 .directive('bbRadio', function () {
     return {

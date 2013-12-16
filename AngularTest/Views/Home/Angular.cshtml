@@ -3,7 +3,13 @@
 }
 @section styles
 {
+    <link rel="stylesheet" href="@Url.Content("~/Content/ng-grid.css")" />
     <style>
+        .gridStyle {
+            border: 1px solid rgb(212,212,212);
+            height: 300px;
+        }
+
         .package {
             margin-left: 10px;
             padding: 3px;
@@ -85,18 +91,52 @@
         <div id="top"></div>
     </div>
     <div class="col-md-8">
-        <screen></screen>
+        <screen>
+        </screen>
     </div>
-
 
     <script type="text/ng-template" id="bbRadio.html">
         <div class="radio" ng-repeat="option in data.source">
             <label>
-                <input type="radio" name="{{data.prefix}}Radios" ng-model="data.value" ng-value="option.value" ng-readonly="data.readonly">
+                <input type="radio"
+                       ng-model="data.value" 
+                       ng-value="option.value" 
+                       ng-readonly="data.readonly">
                 {{option.text}}
             </label>
         </div>
     </script>
+
+    <script type="text/ng-template" id="bbTextArea.html">
+        <textarea class="form-control" rows="5" 
+                  ng-readonly="data.readonly" 
+                  ng-model="data.source"></textarea>
+    </script>
+
+    <script type="text/ng-template" id="bbText.html">
+        <input type="text" 
+               class="form-control" 
+               ng-readonly="data.readonly" 
+               ng-model="data.source" />
+    </script>
+
+    <script type="text/ng-template" id="bbGridOld.html">
+        <table class="table-hover table-bordered">
+            <tbody>
+                <tr ng-repeat="row in data.source">
+                    <td ng-repeat="col in row">
+                        {{col}}
+                    </td>
+            </tbody>
+        </table>
+    </script>
+
+    <script type="text/ng-template" id="bbGrid.html">
+        <div>
+            <div class="gridStyle" ng-grid="gridOptions"></div>
+        </div>
+    </script>
+
 
 </div>
 

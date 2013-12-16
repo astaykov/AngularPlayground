@@ -68,5 +68,5 @@
                         }
                 }
 ];
-
-var todoApp = angular.module('activityApp', ['components']);
+var nData;
+var todoApp = angular.module('activityApp', ['ngGrid','components']);

@@ -10,8 +10,9 @@ namespace AngularTest
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/angular.min.js",
+                        "~/Scripts/angular/angular.min.js",
                         "~/Scripts/app/components.js",
+                        "~/Scripts/angular/ng-grid-2.0.7.min.js",
                         "~/Scripts/app/app.js",
                         "~/Scripts/json2html.js",
                         "~/Scripts/jquery.json2html.js"
