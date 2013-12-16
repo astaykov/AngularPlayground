@@ -20,7 +20,7 @@
 
 .directive('step', ['$compile', function ($compile) {
     var mainTemplate = 
-        '<div class="panel panel-primary">' +
+        '<div class="panel panel-primary" ng-show="isVisible()">' +
         '    <div class="panel-heading">{{step.title}}</div>' +
         '    <div class="panel-body">' +
         '       &content&' +
@@ -69,6 +69,16 @@
         controller: ['$scope', '$element', function ($scope, $element)
         {
             console.log('entering Step Controller: ' + $scope.step.data.type);
+
+            $scope.isVisible = function ()
+            {
+                if ($scope.step.showRule != null && typeof($scope.step.showRule) != "undefined")
+                {
+                    var result = eval('this.$root.' + $scope.step.showRule);
+                    return result;
+                }
+                return true;
+            }
         }]
     };
     return result;

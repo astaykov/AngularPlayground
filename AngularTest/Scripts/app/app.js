@@ -40,6 +40,7 @@
                   },
                 {
                     title: "Big read only text",
+                    showRule: "steps[1].data.value == 'yes'",
                     data:
                         {
                             type: 'bigtext',
