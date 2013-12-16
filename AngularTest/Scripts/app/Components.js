@@ -126,10 +126,12 @@
             $scope.gridData = $scope.data.source;
             $scope.gridOptions = {
                 data: 'gridData',
+                enableCellSelection: true,
+                enableRowSelection: false,
+                enableCellEdit: true,
                 columnDefs: [{ field: 'title', displayName: 'Title' }, { field: 'name', displayName: 'Name' }]
             };
         }],
-        //template: '<div><div ng-grid="gridOptions"></div></div>',
         templateUrl: 'bbGrid.html'
     };
 }])

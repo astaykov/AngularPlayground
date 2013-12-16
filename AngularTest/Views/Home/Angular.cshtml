@@ -93,6 +93,18 @@
     <div class="col-md-8">
         <screen>
         </screen>
+        <div class="panel panel-info" ng-controller="dataController">
+            <div class="panel-body">
+                <button ng-click="saveChanges('jsonData')" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">JSON data</div>
+            <div class="panel-body" id="jsonData">
+                {{scope | json}}        
+            </div>
+        </div>
     </div>
 
     <script type="text/ng-template" id="bbRadio.html">

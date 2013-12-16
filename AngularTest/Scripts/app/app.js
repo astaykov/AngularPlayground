@@ -69,4 +69,16 @@
                 }
 ];
 var nData;
-var todoApp = angular.module('activityApp', ['ngGrid','components']);
+var todoApp = angular.module('activityApp', ['ngGrid', 'components']);
+function dataController($scope, $http) {
+
+    $scope.saveChanges = function (elementToDisplay) {
+        var data = angular.toJson($scope.$parent.$root.steps);
+        $('#' + elementToDisplay).html('<pre>'+data+'</pre>')
+        //$http({
+        //    method: 'POST',
+        //    url: '/create',
+        //    data: $scope.user
+        //})
+    }
+}
