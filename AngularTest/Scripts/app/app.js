@@ -33,7 +33,8 @@
                               source:
                                   { text: 'Agree to terms and conditions', name: 'doIagree' }
                           }
-                  }, {
+                  },
+                  {
                       title: "Radio Group Two",
                       data:
                           {
@@ -48,6 +49,24 @@
                               ]
                           }
                   },
+                  {
+                      title: "Select something",
+                      data:
+                          {
+                              type: 'select',
+                              readonly: false,
+                              value: 30,
+                              source:
+                                 [
+                                        { value: 10, text: 'One' },
+                                        { value: 20, text: 'Two' },
+                                        { value: 30, text: 'Three' },
+                                        { value: 40, text: 'Four' },
+                                        { value: 50, text: 'Five' }
+
+                                 ]
+                          }
+                  },
                 {
                     title: "Big read only text",
                     showRule: "steps[1].data.value == 'yes'",
@@ -59,7 +78,7 @@
                         }
                 },
                 {
-                    title: "Read only grid",
+                    title: "Fully functional grid",
                     data:
                         {
                             type: 'grid',

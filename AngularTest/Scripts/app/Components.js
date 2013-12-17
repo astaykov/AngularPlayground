@@ -31,6 +31,7 @@
     var bigTextTemplate = '<bb-text-area data="step.data"></bb-text-area>';
     var radioTemplate = '<bb-radio data="step.data"></bb-radio>';
     var checkboxTemplate = '<bb-checkbox data="step.data"></bb-checkbox>';
+    var selectTemplate = '<bb-select data="step.data"></bb-select>';
 
     var getTemplate = function (contentType) {
         var template = '';
@@ -51,6 +52,9 @@
             case 'checkbox':
                 template = mainTemplate.replace("&content&", checkboxTemplate)
                 break;
+            case 'select':
+                    template = mainTemplate.replace("&content&", selectTemplate)
+                    break;
         }
         return template;
     }
@@ -165,6 +169,20 @@
             console.log('entering CheckBox Block Controller: ' + $scope.data.source.text);
         }],
         templateUrl: "bbCheckbox.html"
+    };
+})
+
+.directive('bbSelect', function () {
+    return {
+        require: '^step',
+        restrict: 'E',
+        transclude: true,
+        replace: true,
+        scope: { data: '=' },
+        controller: ['$scope', '$element', function ($scope, $element) {
+            console.log('entering Select Block Controller: ' + $scope.data.source.text);
+        }],
+        templateUrl: "bbSelect.html"
     };
 })
 

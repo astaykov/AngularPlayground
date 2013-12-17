@@ -135,6 +135,14 @@
         </div>
     </script>
 
+    <script type="text/ng-template" id="bbSelect.html">
+        <select class="form-control"
+                ng-disabled="data.readonly"
+                ng-model="data.value" 
+                ng-options="s.value as s.text for s in data.source"
+                ></select>
+    </script>
+
     <script type="text/ng-template" id="bbTextArea.html">
         <textarea class="form-control" rows="5" 
                   ng-readonly="data.readonly" 
