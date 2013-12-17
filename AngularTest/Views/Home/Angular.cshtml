@@ -108,14 +108,30 @@
     </div>
 
     <script type="text/ng-template" id="bbRadio.html">
-        <div class="radio" ng-repeat="option in data.source">
-            <label>
-                <input type="radio"
-                       ng-model="data.value" 
-                       ng-value="option.value" 
-                       ng-readonly="data.readonly">
-                {{option.text}}
-            </label>
+        <div class="form-inline">
+            <div class="radio" ng-repeat="option in data.source">
+                <label>
+                    <input type="radio"
+                           ng-model="data.value"
+                           ng-value="option.value"
+                           ng-disabled="data.readonly">
+                    {{option.text}}
+                </label>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="bbCheckbox.html">
+        <div class="form-inline">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" 
+                           ng-disabled="data.readonly"
+                           ng-model="data.value"
+                           name="{{data.source.name}}"
+                           /> {{data.source.text}}
+                </label>
+            </div>
         </div>
     </script>
 
@@ -132,23 +148,11 @@
                ng-model="data.source" />
     </script>
 
-    <script type="text/ng-template" id="bbGridOld.html">
-        <table class="table-hover table-bordered">
-            <tbody>
-                <tr ng-repeat="row in data.source">
-                    <td ng-repeat="col in row">
-                        {{col}}
-                    </td>
-            </tbody>
-        </table>
-    </script>
-
     <script type="text/ng-template" id="bbGrid.html">
         <div>
             <div class="gridStyle" ng-grid="gridOptions"></div>
         </div>
     </script>
-
 
 </div>
 

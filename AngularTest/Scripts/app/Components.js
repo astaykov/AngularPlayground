@@ -30,6 +30,7 @@
     var gridTemplate = '<bb-grid data="step.data">This is Grid Data</bb-grid>';
     var bigTextTemplate = '<bb-text-area data="step.data"></bb-text-area>';
     var radioTemplate = '<bb-radio data="step.data"></bb-radio>';
+    var checkboxTemplate = '<bb-checkbox data="step.data"></bb-checkbox>';
 
     var getTemplate = function (contentType) {
         var template = '';
@@ -46,6 +47,9 @@
                 break;
             case 'radio':
                 template = mainTemplate.replace("&content&", radioTemplate);
+                break;
+            case 'checkbox':
+                template = mainTemplate.replace("&content&", checkboxTemplate)
                 break;
         }
         return template;
@@ -128,7 +132,7 @@
                 data: 'gridData',
                 enableCellSelection: true,
                 enableRowSelection: false,
-                enableCellEdit: true,
+                enableCellEdit: !$scope.data.readonly,
                 columnDefs: [{ field: 'title', displayName: 'Title' }, { field: 'name', displayName: 'Name' }]
             };
         }],
@@ -149,3 +153,18 @@
         templateUrl: "bbRadio.html"
     };
 })
+
+.directive('bbCheckbox', function () {
+    return {
+        require: '^step',
+        restrict: 'E',
+        transclude: true,
+        replace: true,
+        scope: { data: '=' },
+        controller: ['$scope', '$element', function ($scope, $element) {
+            console.log('entering CheckBox Block Controller: ' + $scope.data.source.text);
+        }],
+        templateUrl: "bbCheckbox.html"
+    };
+})
+

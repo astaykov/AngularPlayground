@@ -24,13 +24,23 @@
                          }
                  },
                   {
+                      title: "Some checks here",
+                      data:
+                          {
+                              type: 'checkbox',
+                              readonly: true,
+                              value: true,
+                              source:
+                                  { text: 'Agree to terms and conditions', name: 'doIagree' }
+                          }
+                  }, {
                       title: "Radio Group Two",
                       data:
                           {
                               type: 'radio',
-                              readonly: false,
+                              readonly: true,
                               prefix: 'rgt',
-                              value: 'на',
+                              value: 'не',
                               source: [
                                         { value: 'да', text: 'Да' },
                                         { value: 'не', text: 'Не' },
@@ -53,7 +63,7 @@
                     data:
                         {
                             type: 'grid',
-                            readonly: false,
+                            readonly: true,
                             source:
                                 [
                                     {
