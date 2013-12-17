@@ -82,3 +82,4 @@ function dataController($scope, $http) {
         //})
     };
 }
+dataController.$inject = [$scope, $http];
