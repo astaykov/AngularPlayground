@@ -11,12 +11,13 @@ namespace AngularTest.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
+            System.Diagnostics.Trace.WriteLine("Home/Index called");
             return View();
         }
 
         public ActionResult Angular()
         {
+            System.Diagnostics.Trace.WriteLine("Home/Angular called");
             return View();
         }
     }
