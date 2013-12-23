@@ -1,6 +1,8 @@
 ﻿var activityData = [
                 {
+                    step: "1.1",
                     title: "Editable Text",
+                    visible: true,
                     data:
                         {
                             type: 'text',
@@ -9,7 +11,9 @@
                         }
                 },
                  {
+                     step: "1.2",
                      title: "Radio Group One",
+                     visible: true,
                      data:
                          {
                              type: 'radio',
@@ -24,7 +28,9 @@
                          }
                  },
                   {
+                      step: "1.3",
                       title: "Some checks here",
+                      visible: true,
                       data:
                           {
                               type: 'checkbox',
@@ -35,7 +41,9 @@
                           }
                   },
                   {
+                      step: "1.4",
                       title: "Radio Group Two",
+                      visible: true,
                       data:
                           {
                               type: 'radio',
@@ -50,7 +58,9 @@
                           }
                   },
                   {
+                      step: "1.5",
                       title: "Select something",
+                      visible: true,
                       data:
                           {
                               type: 'select',
@@ -68,8 +78,9 @@
                           }
                   },
                 {
+                    step: "1.6",
                     title: "Big read only text",
-                    showRule: "steps[1].data.value == 'yes'",
+                    visible: true,
                     data:
                         {
                             type: 'bigtext',
@@ -78,7 +89,9 @@
                         }
                 },
                 {
+                    step: "1.7",
                     title: "Fully functional grid",
+                    visible: true,
                     data:
                         {
                             type: 'grid',
@@ -110,5 +123,22 @@ function dataController($scope, $http) {
         //    data: $scope.user
         //})
     };
+
+    $scope.$root.dataChanged = function (steps, step, newValue)
+    {
+        var scopeSteps = steps;
+        $http.get('/api/ActivitySvc/ValueChange?aId=1.0&step=' + step + '&newValue=' + newValue)
+            .success(function (data) {
+                newStep = angular.fromJson(data);
+                angular.forEach(scopeSteps, function (step, key) {
+                    if(step.step == newStep.step)
+                    {
+                        step.visible = newStep.visible;
+                        step.data = newStep.data;
+                        step.data.readonly = newStep.data.Readonly;
+                    }
+                });
+            });
+    }
 }
 dataController.$inject = ['$scope', '$http'];

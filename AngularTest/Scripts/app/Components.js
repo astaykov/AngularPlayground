@@ -5,10 +5,7 @@
         restrict: 'E',
         transclude: true,
         controller: ['$scope', '$element', function ($scope, $element) {
-            var steps = $scope.steps = nData = activityData;
-            this.addStep = function (step) {
-                steps.push(step);
-            }
+           var steps = $scope.steps = nData = activityData;
         }],
         template:
             '<div class="step" ng-repeat="step in steps">'+
@@ -80,12 +77,7 @@
 
             $scope.isVisible = function ()
             {
-                if ($scope.step.showRule != null && typeof($scope.step.showRule) != "undefined")
-                {
-                    var result = eval('this.$root.' + $scope.step.showRule);
-                    return result;
-                }
-                return true;
+                return $scope.step.visible;
             }
         }]
     };
@@ -151,8 +143,18 @@
         transclude: true,
         replace: true,
         scope: { data: '=' },
-        controller: ['$scope', '$element', function ($scope, $element) {
+        controller: ['$scope', '$timeout', '$element', function ($scope, $timeout, $element) {
+            var initializing = true;
             console.log('entering Radio Block Controller: ' + $scope.data.source[2].options);
+            $scope.$watch('data.value', function (value) {
+                if (initializing) {
+                    $timeout(function () { initializing = false; });
+                } else {
+                    console.log('Radio changed to: ' + value);
+                    $scope.$root.dataChanged($scope.$root.steps, $scope.$parent.step.step, value);
+                }
+                
+            });
         }],
         templateUrl: "bbRadio.html"
     };
